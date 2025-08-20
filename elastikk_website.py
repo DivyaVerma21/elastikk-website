@@ -209,23 +209,26 @@ base_template = """
     <div class="overlay"></div>
     <div class="main-content">
         <header>
-            <img src="{{ logo_img }}" alt="Elastikk Logo" class="logo-img">
-            <span class="brand-title">Elastikk AS</span>
-            <nav class="nav-bar">
-                <a href="{{ url_for('home') }}" class="nav-link {% if lang == 'no' and request.path == '/' %}active{% endif %}">{% if lang == 'no' %}Hjem{% else %}Home{% endif %}</a>
-                <a href="{{ url_for('solutions', lang=lang) }}" class="nav-link {% if (lang == 'no' and request.path.startswith('/losninger')) or (lang == 'en' and request.path.startswith('/en/solutions')) %}active{% endif %}">{% if lang == 'no' %}Våre løsninger{% else %}Our Solutions{% endif %}</a>
-                <a href="{{ url_for('contact', lang=lang) }}" class="nav-link {% if (lang == 'no' and request.path.startswith('/kontakt')) or (lang == 'en' and request.path.startswith('/en/contact')) %}active{% endif %}">{% if lang == 'no' %}Kontakt{% else %}Contact{% endif %}</a>
-                <a href="{{ url_for('partners', lang=lang) }}" class="nav-link {% if (lang == 'no' and request.path.startswith('/partnere')) or (lang == 'en' and request.path.startswith('/en/partners')) %}active{% endif %}">{% if lang == 'no' %}Partnere{% else %}Partners{% endif %}</a>
-                <select class="lang-switcher" onchange="languageSwitch(this)">
-                    <option value="no" {% if lang == 'no' %}selected{% endif %}>Norsk</option>
-                    <option value="en" {% if lang == 'en' %}selected{% endif %}>English</option>
-                </select>
-            </nav>
-            <div class="header-actions">
-                <a href="https://poc.elastikk.com/" class="action-btn" target="_blank">{% if lang == 'no' %}Logg inn{% else %}Log in{% endif %}</a>
-                <a href="#" class="action-btn">{% if lang == 'no' %}Book et møte{% else %}Book a meeting{% endif %}</a>
-            </div>
-        </header>
+    <div class="header-row">
+        <img src="{{ logo_img }}" alt="Elastikk Logo" class="logo-img">
+        <span class="brand-title">Elastikk AS</span>
+        <div class="header-actions">
+            <a href="https://poc.elastikk.com/" class="action-btn" target="_blank">{% if lang == 'no' %}Logg inn{% else %}Log in{% endif %}</a>
+            <a href="#" class="action-btn">{% if lang == 'no' %}Book et møte{% else %}Book a meeting{% endif %}</a>
+        </div>
+    </div>
+</header>
+<nav class="nav-bar">
+    <a href="{{ url_for('home') }}" class="nav-link {% if lang == 'no' and request.path == '/' %}active{% endif %}">{% if lang == 'no' %}Hjem{% else %}Home{% endif %}</a>
+    <a href="{{ url_for('solutions', lang=lang) }}" class="nav-link {% if (lang == 'no' and request.path.startswith('/losninger')) or (lang == 'en' and request.path.startswith('/en/solutions')) %}active{% endif %}">{% if lang == 'no' %}Våre løsninger{% else %}Our Solutions{% endif %}</a>
+    <a href="{{ url_for('contact', lang=lang) }}" class="nav-link {% if (lang == 'no' and request.path.startswith('/kontakt')) or (lang == 'en' and request.path.startswith('/en/contact')) %}active{% endif %}">{% if lang == 'no' %}Kontakt{% else %}Contact{% endif %}</a>
+    <a href="{{ url_for('partners', lang=lang) }}" class="nav-link {% if (lang == 'no' and request.path.startswith('/partnere')) or (lang == 'en' and request.path.startswith('/en/partners')) %}active{% endif %}">{% if lang == 'no' %}Partnere{% else %}Partners{% endif %}</a>
+    <select class="lang-switcher" onchange="languageSwitch(this)">
+        <option value="no" {% if lang == 'no' %}selected{% endif %}>Norsk</option>
+        <option value="en" {% if lang == 'en' %}selected{% endif %}>English</option>
+    </select>
+</nav>
+
         <div class="content-area">
             {{ content|safe }}
         </div>
