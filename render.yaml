@@ -1,0 +1,7 @@
+services:
+  - type: web
+    name: elastikk-website
+    env: python
+    buildCommand: ""
+    startCommand: gunicorn elastikk-website:app
+    plan: free
