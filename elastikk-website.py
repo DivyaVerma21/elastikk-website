@@ -7,7 +7,7 @@ base_template = """
 <html lang="{{ lang }}">
 <head>
     <meta charset="UTF-8">
-    <title>Elastikk AS – Frigjør kapasitet med teknologi</title>
+    <title>Elastikk  – Frigjør kapasitet med teknologi</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600&family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
     <style>
@@ -208,16 +208,58 @@ base_template = """
 <body>
     <div class="overlay"></div>
     <div class="main-content">
-        <header>
-    <div class="header-row">
-        <img src="{{ logo_img }}" alt="Elastikk Logo" class="logo-img">
-        <span class="brand-title">Elastikk AS</span>
-        <div class="header-actions">
-            <a href="https://poc.elastikk.com/" class="action-btn" target="_blank">{% if lang == 'no' %}Logg inn{% else %}Log in{% endif %}</a>
-            <a href="#" class="action-btn">{% if lang == 'no' %}Book et møte{% else %}Book a meeting{% endif %}</a>
-        </div>
+<header>
+  {% if is_home %}
+  <!-- Central Elastikk Banner -->
+  <div style="
+    max-width: 1240px;         /* match your content-area max-width */
+    margin: 0 auto;
+    width: 100%;
+    background: #140e32;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    padding: 1.2rem 3vw;
+    font-size: 1.16rem;
+    gap: 2vw;
+    box-sizing: border-box;
+    border-radius: 12px;
+    ">
+    <!-- Logo + Brand -->
+    <div style="display: flex; align-items: center; gap: 1vw; min-width: 330px;">
+      <img src='{{ url_for("static", filename="elastikk_logo.jpg") }}' alt="Logo"
+           style="height: 48px; width: 48px; border-radius: 12px; background: white;
+           box-shadow: 0 2px 10px rgba(20,33,61,0.09); margin-right:12px; object-fit: contain;">
+      <span style="font-family: 'Montserrat', Arial, sans-serif; font-size: 2.1rem; font-weight: 700; color: #fff; letter-spacing: 1px; display: flex; flex-direction: column; line-height:1.0;">
+        ELASTIKK
+        <span style="color: #f77a21; font-size: 1.25rem; font-weight:600; letter-spacing:.5px;">GRID.REINVENTED</span>
+      </span>
     </div>
+    <!-- Kontakt Info -->
+    <span style="color:#f77a21; font-weight:700; margin-left:3vw;">Kontakt :</span>
+    <span style="margin-left:1vw;">
+      E-post: <a href="mailto:contact@elastikk.com" style="color:#fff; text-decoration:underline; font-weight:600;">contact@elastikk.com</a>
+    </span>
+    <span style="margin-left:1vw;">
+      Tlf: <a href="tel:+4795212502" style="color:#fff; text-decoration:underline; font-weight:600;">+47 952 12 502</a>
+    </span>
+    <!-- Buttons -->
+    <a href="#" style="background: #f77a21; color: #fff; font-weight: 700;
+      padding: 0.6rem 2rem; border-radius: 9px; margin-left: 2vw; border: none;
+      font-size:1.12rem; text-decoration: none; box-shadow: 0 2px 12px rgba(255,197,41,0.09);
+      white-space:nowrap;">Book et møte!</a>
+    <a href="https://poc.elastikk.com/" target="_blank"
+      style="background: transparent; color: #fff; font-weight: 700;
+      padding: 0.6rem 2rem; border-radius: 9px; margin-left: 1vw;
+      border: 2px solid #f77a21; font-size:1.12rem; text-decoration: none;
+      box-sizing:border-box; white-space:nowrap;">Logg inn!</a>
+  </div>
+  {% else %}
+    <!-- ...other header for non-home pages... -->
+  {% endif %}
 </header>
+
 <nav class="nav-bar">
     <a href="{{ url_for('home') }}" class="nav-link {% if lang == 'no' and request.path == '/' %}active{% endif %}">{% if lang == 'no' %}Hjem{% else %}Home{% endif %}</a>
     <a href="{{ url_for('solutions', lang=lang) }}" class="nav-link {% if (lang == 'no' and request.path.startswith('/losninger')) or (lang == 'en' and request.path.startswith('/en/solutions')) %}active{% endif %}">{% if lang == 'no' %}Våre løsninger{% else %}Our Solutions{% endif %}</a>
